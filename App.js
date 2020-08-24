@@ -1,12 +1,12 @@
 import React from 'react'
-import {View, StyleSheet} from 'react-native'
+import {View, StyleSheet, Text} from 'react-native'
+import Calculadora from './src/Atividade 2/Calculadora'
 
-import FlexBox from './src/FlexBox'
 
 export default props => {
   return(
     <View style={styles.container}>      
-      <FlexBox/>
+      <Calculadora/>
     </View>
   )
 }
