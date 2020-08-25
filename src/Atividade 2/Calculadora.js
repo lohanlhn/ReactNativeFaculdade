@@ -15,10 +15,13 @@ export default props => {
         setResultado(Number(a) - Number(b))
     }
     function divisao() {
-        setResultado(Number(a) * Number(b))
+        if(b == 0){
+            setResultado("Não é possivel dividir por 0")
+        }
+        setResultado(Number(a) / Number(b))
     }
     function mult() {
-        setResultado(Number(a) / Number(b))
+        setResultado(Number(a) * Number(b))
     }
     
     return(
