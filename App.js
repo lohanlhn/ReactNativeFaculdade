@@ -1,21 +1,15 @@
 import React from 'react'
 import {View, StyleSheet, Text} from 'react-native'
-import Calculadora from './src/Atividade 26-08/Calculadora'
+import Stack from './src/Componentes_aula 09-09/endPointAccess/navegacao/StackBusca'
+import {NavigationContainer} from '@react-navigation/native'
 
 
 export default props => {
   return(
-    <View style={styles.container}>      
-      <Calculadora/>
+    <View style={{flex:1}}>      
+    <NavigationContainer>
+      <Stack/>
+    </NavigationContainer>      
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow:1,
-    alignItems: "center",
-    justifyContent: "center",
-    margin:30
-  }
-})

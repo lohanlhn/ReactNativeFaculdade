@@ -4,7 +4,7 @@ import {Text, View, Alert, Button} from 'react-native'
 export default function Lista (props){
     const id = props.route.params.idCliente
     const [data, setData] = useState([])
-    const string = 'https://cartoes-piotto.herokuapp.com/api/cliente/'+id 
+    const string = 'https://cartoes-piotto.herokuapp.com/api/cartao/cliente/'+id 
     useEffect(() => {
             fetch(string, {
             method: 'GET',
@@ -29,37 +29,32 @@ export default function Lista (props){
         .catch((error) => {
             console.error(error)})
         }, []);
-    
-    function renderizacao (){
-        if(data != null){
-            return (
-                <>
-                    <Text style={{fontSize:24, color:'blue', fontWeight:'bold'}}>
-                        Cliente  
-                    </Text>
-                    <Text>
-                        ID: {data.id}
-                    </Text>
-                    <Text>
-                        CPF: {data.cpf} 
-                    </Text>
-                    <Text>
-                        Nome: {data.nome}
-                    </Text>
-                    <Text>
-                        UF: {data.uf}
-                    </Text>
-                    <Button title="Voltar" onPress={() => props.navigation.goBack()}/>  
-                    <Button title="Listar cartoes"  
-                    onPress={() => {props.navigation.navigate("ListarCartoes", {idCliente:id})}}/>
-                </>
-            )
-        }
-    }
 
-    return(
-        <View style={{flex:1, padding: 24}}>
+        function renderizacao (){
+            if(data != null){
+                return (
+                    <>
+                    <Text style={{fontSize:24, color:'blue', fontWeight:'bold'}}>
+                        Cliente ID: {id}   
+                    </Text>
+                        {data.map(x => 
+                        <>
+                        <Text>ID: {x.id}</Text>
+                        <Text>numero: {x.numero}</Text>
+                        <Text>Data Validade: {x.dataValidade}</Text>
+                        <Text style={{borderBottomWidth:10, borderColor:"transparent"}}>Bloqueado: {x.bloqueado}</Text>
+                        </>
+                        )}
+                    
+                    <Button title="Voltar" onPress={() => props.navigation.goBack()}/>                      
+                    </>
+                )
+            }
+        }
+
+        return(
+            <View style={{flex:1, padding: 24}}>
             {renderizacao()}
-        </View>
-    );
-}
+            </View>
+        )    
+    };
